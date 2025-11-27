@@ -1,4 +1,6 @@
 import * as productService from "../services/products.services.js"
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 export const addProduct = async (req, res) => {
     try{
@@ -39,11 +41,22 @@ export const editProduct = async (req, res) => {
         res.status(500).send()
     }
 }*/
+// Define __filename y __dirname para módulos ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export const documentation = async (req, res) => {
-    try{
-        res.sendFile("documentation.html", { root: "./src/data" });       
-    }catch(error){
-        res.status(500).send()
+    try {
+        // Ahora puedes usar '__dirname' como lo harías en CommonJS
+        // Ajusta la ruta '..' y 'data' según tu estructura real
+        const filePath = path.join(__dirname, '..', 'data', 'documentation.html');
+        
+        console.log("Ruta del archivo intentando enviar:", filePath); // Para depuración
+
+        res.sendFile(filePath);
+    } catch (error) {
+        console.error("Error al servir la documentación:", error);
+        res.status(500).send("Error interno del servidor al cargar la documentación.");
     }
 };
 
