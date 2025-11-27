@@ -180,11 +180,11 @@
             <!-- GET ALL PRODUCTS -->
             <section>
                 <h2>Endpoints</h2>
-
+               
                 <div class="endpoint">
                     <div>
                         <span class="method get">GET</span>
-                        <span class="path">/products</span>
+                        <span class="path">/api/products</span>
                         <span class="auth-optional">Opcional</span>
                     </div>
                     <div class="details">
@@ -222,7 +222,7 @@
                 <div class="endpoint">
                     <div>
                         <span class="method get">GET</span>
-                        <span class="path">/products/:id</span>
+                        <span class="path">/api/products/:id</span>
                         <span class="auth-optional">Opcional</span>
                     </div>
                     <div class="details">
@@ -260,7 +260,7 @@
                 <div class="endpoint">
                     <div>
                         <span class="method post">POST</span>
-                        <span class="path">/products/create</span>
+                        <span class="path">/api/products/create</span>
                         <span class="auth-required">Requiere Autenticación</span>
                     </div>
                     <div class="details">
@@ -301,7 +301,7 @@
                             </div>
                         </div>
                         <div class="example-title">Ejemplo (curl):</div>
-                        <div class="code-block">curl -X POST http://localhost:3000/products/create \
+                        <div class="code-block">curl -X POST http://localhost:3000/api/products/create \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer eyJhbGc..." \
   -d '{"name":"Camisa","price":29.99,"category":"Ropa"}'</div>
@@ -312,7 +312,7 @@
                 <div class="endpoint">
                     <div>
                         <span class="method delete">DELETE</span>
-                        <span class="path">/products/:id</span>
+                        <span class="path">/api/products/:id</span>
                         <span class="auth-required">Requiere Autenticación</span>
                     </div>
                     <div class="details">
@@ -338,8 +338,39 @@
                             </div>
                         </div>
                         <div class="example-title">Ejemplo (curl):</div>
-                        <div class="code-block">curl -X DELETE http://localhost:3000/products/123 \
+                        <div class="code-block">curl -X DELETE http://localhost:3000/api/products/123 \
   -H "Authorization: Bearer eyJhbGc..."</div>
+                    </div>
+                </div>
+                <!-- Autentificacion -->
+                 <div class="endpoint">
+                    <div>
+                        <span class="method get">POST</span>
+                        <span class="path">/auth/login</span>
+                        <span class="auth-optional">Opcional</span>
+                    </div>
+                    <div class="details">
+                        <div class="detail-item">
+                            <span class="detail-label">Descripción:</span> Permite enviar las credenciales y obtener un token JWT para autenticación
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Parámetros:</span> Email y password en el body
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Respuesta (200):</span> Token JWT
+                            <div class="response">
+[
+  {
+    "email": test@gmail.com,
+    "password": "123456",
+  
+  },
+  
+]
+                            </div>
+                        </div>
+                        <div class="example-title">Ejemplo (curl):</div>
+                        <div class="code-block">curl -X GET http://localhost:3000/auth/login</div>
                     </div>
                 </div>
             </section>
@@ -350,7 +381,7 @@
                     <h3>⚠️ Notas Importantes</h3>
                     <ul>
                         <li>La autenticación se realiza mediante tokens JWT en el header <code>Authorization</code></li>
-                        <li>Los endpoints GET (/products, /products/:id) no requieren autenticación</li>
+                        <li>Los endpoints GET (/api/products, /api/products/:id) no requieren autenticación</li>
                         <li>Los endpoints POST y DELETE requieren un token válido</li>
                         <li>El formato de respuesta es JSON en todos los casos</li>
                         <li>Los códigos de estado HTTP siguen los estándares REST</li>
