@@ -2,6 +2,7 @@ import express from  "express";
 import cors from "cors"
 import rutasProductos from "./src/routes/products.routes.js";
 import rutasLogin from "./src/routes/auth.routes.js";
+import { documentation } from "./src/controllers/products.controllers.js";
 
 const app= express();
 const PORT = process.env.PORT||3000;
@@ -27,12 +28,13 @@ app.use((req,res,next)=>{
     console.log("Datos de la peticion",req.method, req.url);
     next();
 })
-
 app.use("/api",rutasProductos);
+app.use("/",documentation);
 
 
 //Manejo de rutas no definidas
 app.use((req, res, next) => {
+   
     res.status(404).send('Recurso no encontrado o ruta inválida');
 });
 

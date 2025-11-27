@@ -39,6 +39,13 @@ export const editProduct = async (req, res) => {
         res.status(500).send()
     }
 }*/
+export const documentation = async (req, res) => {
+    try{
+        res.sendFile("documentation.html", { root: "./src/data" });       
+    }catch(error){
+        res.status(500).send()
+    }
+};
 
 export const getAllProducts = async (req, res) => {
     try{
